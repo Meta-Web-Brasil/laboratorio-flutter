@@ -12,17 +12,46 @@ class MoedasPage extends StatefulWidget {
 }
 
 class _MoedasPageState extends State<MoedasPage> {
+  final listaTodosSignos = SignosRepository.listarTodos;
+  NumberFormat real = NumberFormat.currency(locale: 'pt_BR', name: 'R\$');
+  List<Signo> signosSelecionados = [];
+
+  double circularRadius = 12;
+  double fontSizePage = 17;
+
+  appBarDinamica() {
+    if (signosSelecionados.isEmpty) {
+      return AppBar(
+        title: const Text('Signos'),
+      );
+    } else {
+      return AppBar(
+        leading: IconButton(
+          onPressed: () => {
+            setState(() {
+              signosSelecionados = [];
+            })
+          },
+          icon: const Icon(Icons.arrow_back),
+        ),
+        title: Text('Signos ${signosSelecionados.length}'),
+        backgroundColor: Colors.blueGrey,
+        elevation: 20,
+        iconTheme: IconThemeData(
+          color: Colors.amber[400],
+        ),
+        titleTextStyle: TextStyle(
+            color: Colors.amber[400],
+            fontWeight: FontWeight.bold,
+            fontSize: 26),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final listaTodosSignos = SignosRepository.listarTodos;
-    NumberFormat real = NumberFormat.currency(locale: 'pt_BR', name: 'R\$');
-    List<Signo> signosSelecionados = [];
-    double circularRadius = 12;
-    String appBarTitlePage = 'Signos';
-    double fontSizePage = 17;
-
     return Scaffold(
-      appBar: AppBar(title: Text(appBarTitlePage)),
+      appBar: appBarDinamica(),
       body: ListView.separated(
           itemBuilder: (BuildContext context, int index) {
             return ListTile(
@@ -31,7 +60,7 @@ class _MoedasPageState extends State<MoedasPage> {
               ),
               // leading: Image.asset(listaTodosSignos[index].icone, ),
               leading: (signosSelecionados.contains(listaTodosSignos[index]))
-                  ? CircleAvatar(
+                  ? const CircleAvatar(
                       child: Icon(Icons.check),
                     )
                   : SizedBox(
@@ -60,17 +89,24 @@ class _MoedasPageState extends State<MoedasPage> {
                       ? signosSelecionados.remove(listaTodosSignos[index])
                       : signosSelecionados.add(listaTodosSignos[index]);
                 });
-
-                print(listaTodosSignos[index].nome);
               },
             );
           },
           padding: EdgeInsets.all(16),
           separatorBuilder: (_, __) => Divider(),
           itemCount: listaTodosSignos.length),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: signosSelecionados.isNotEmpty
+          ? FloatingActionButton.extended(
+              onPressed: () => {setState(() {})},
+              label: Icon(
+                Icons.star_outlined,
+                color: Colors.amber[400],
+                semanticLabel: 'Primeiro acessibilidade manual',
+                size: 30,
+              ),
+            )
+          : null,
     );
   }
 }
