@@ -1,4 +1,5 @@
 import 'package:aula_01/models/signo.dart';
+import 'package:aula_01/pages/signo_detalhe_page.dart';
 import 'package:aula_01/repositories/signos_repositories.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -48,6 +49,14 @@ class _MoedasPageState extends State<MoedasPage> {
     }
   }
 
+  mosrarDetalhesSigno(Signo signo) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => SignoDetalhePage(signo: signo),
+        ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,6 +98,9 @@ class _MoedasPageState extends State<MoedasPage> {
                       ? signosSelecionados.remove(listaTodosSignos[index])
                       : signosSelecionados.add(listaTodosSignos[index]);
                 });
+              },
+              onTap: () => {
+                mosrarDetalhesSigno(listaTodosSignos[index]),
               },
             );
           },
