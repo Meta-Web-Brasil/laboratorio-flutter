@@ -11,7 +11,7 @@ class MeuAplicativo extends StatelessWidget {
         title: 'Hello World',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(primarySwatch: Colors.indigo),
-        home: MoedasPage(),
+        home: const MoedasPage(),
       ),
     );
   }

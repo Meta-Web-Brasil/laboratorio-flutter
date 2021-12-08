@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 class Signo {
   String icone;
   String nome;

@@ -4,7 +4,7 @@ class SignosRepository {
   static List<Signo> listarTodos = [
     Signo(
       icone: 'images/aries.svg',
-      nome: 'Aries',
+      nome: 'Áries',
       casa: '01',
       elemento: 'Fogo',
       preco: 10.4,
@@ -18,7 +18,7 @@ class SignosRepository {
     ),
     Signo(
       icone: 'images/gemeos.svg',
-      nome: 'Gemeos',
+      nome: 'Gêmeos',
       casa: '03',
       elemento: 'Ar',
       preco: 56.383,
@@ -32,14 +32,14 @@ class SignosRepository {
     ),
     Signo(
       icone: 'images/leao.svg',
-      nome: 'Leao',
+      nome: 'Leão',
       casa: '05',
       elemento: 'Fogo',
       preco: 02.029282,
     ),
     Signo(
       icone: 'images/virgem.svg',
-      nome: 'Virgem',
+      nome: 'Vírgem',
       casa: '06',
       elemento: 'Terra',
       preco: 29.39,
