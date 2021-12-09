@@ -1,9 +1,11 @@
 import 'package:aula_01/models/signo.dart';
 import 'package:aula_01/pages/signo_detalhe_page.dart';
+import 'package:aula_01/repositories/favoritas_repository.dart';
 import 'package:aula_01/repositories/signos_repositories.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class MoedasPage extends StatefulWidget {
   const MoedasPage({Key? key}) : super(key: key);
@@ -16,6 +18,9 @@ class _MoedasPageState extends State<MoedasPage> {
   final listaTodosSignos = SignosRepository.listarTodos;
   NumberFormat real = NumberFormat.currency(locale: 'pt_BR', name: 'R\$');
   List<Signo> signosSelecionados = [];
+
+  // Gerenciamento de estado para os favoritos
+  late FavoritasRepository favoritas;
 
   double circularRadius = 12;
   double fontSizePage = 17;
@@ -57,8 +62,20 @@ class _MoedasPageState extends State<MoedasPage> {
         ));
   }
 
+  limparSignosSelecionados() {
+    setState(() {
+      signosSelecionados = [];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    /*
+      Variavel local para o metodo build que tem o contexto da aplicacao em seu parametro
+    */
+    favoritas = Provider.of<FavoritasRepository>(context);
+    // favoritas = context.watch<FavoritasRepository>();
+
     return Scaffold(
       appBar: appBarDinamica(),
       body: ListView.separated(
@@ -82,10 +99,22 @@ class _MoedasPageState extends State<MoedasPage> {
                       ),
                       width: 40,
                     ),
-              title: Text(
-                listaTodosSignos[index].nome,
-                style: TextStyle(
-                    fontSize: fontSizePage, fontWeight: FontWeight.w500),
+              title: Row(
+                children: [
+                  Text(
+                    listaTodosSignos[index].nome,
+                    style: TextStyle(
+                      fontSize: fontSizePage,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  if (favoritas.lista.contains(listaTodosSignos[index]))
+                    const Icon(
+                      Icons.circle,
+                      color: Colors.amber,
+                      size: 8,
+                    )
+                ],
               ),
               trailing: Text(
                 listaTodosSignos[index].elemento,
@@ -110,7 +139,10 @@ class _MoedasPageState extends State<MoedasPage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: signosSelecionados.isNotEmpty
           ? FloatingActionButton.extended(
-              onPressed: () => {setState(() {})},
+              onPressed: () {
+                favoritas.saveAll(signosSelecionados);
+                limparSignosSelecionados();
+              },
               label: Icon(
                 Icons.star_outlined,
                 color: Colors.amber[400],

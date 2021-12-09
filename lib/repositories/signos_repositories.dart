@@ -7,6 +7,7 @@ class SignosRepository {
       nome: 'Áries',
       casa: '01',
       elemento: 'Fogo',
+      raw: ['fogo', 'aries', '01'],
       preco: 10.4,
     ),
     Signo(
@@ -14,6 +15,7 @@ class SignosRepository {
       nome: 'Touro',
       casa: '02',
       elemento: 'Terra',
+      raw: ['terra', 'touro', '02'],
       preco: 80.3,
     ),
     Signo(
@@ -21,6 +23,7 @@ class SignosRepository {
       nome: 'Gêmeos',
       casa: '03',
       elemento: 'Ar',
+      raw: ['ar', 'gemeos', '03'],
       preco: 56.383,
     ),
     Signo(
@@ -28,6 +31,7 @@ class SignosRepository {
       nome: 'Câncer',
       casa: '04',
       elemento: 'Água',
+      raw: ['agua', 'cancer', '04'],
       preco: 00.83633,
     ),
     Signo(
@@ -35,6 +39,7 @@ class SignosRepository {
       nome: 'Leão',
       casa: '05',
       elemento: 'Fogo',
+      raw: ['fogo', 'leao', '05'],
       preco: 02.029282,
     ),
     Signo(
@@ -42,6 +47,7 @@ class SignosRepository {
       nome: 'Vírgem',
       casa: '06',
       elemento: 'Terra',
+      raw: ['terra', 'virgem', '06'],
       preco: 29.39,
     ),
     Signo(
@@ -49,6 +55,7 @@ class SignosRepository {
       nome: 'Libra',
       casa: '07',
       elemento: 'Ar',
+      raw: ['ar', 'libra', '07'],
       preco: 39.120,
     ),
     Signo(
@@ -56,6 +63,7 @@ class SignosRepository {
       nome: 'Escorpião',
       casa: '08',
       elemento: 'Água',
+      raw: ['agua', 'escorpiao', '08'],
       preco: 10.40,
     ),
     Signo(
@@ -63,6 +71,7 @@ class SignosRepository {
       nome: 'Sagitário',
       casa: '09',
       elemento: 'Fogo',
+      raw: ['fogo', 'sagitario', '09'],
       preco: 22.44,
     ),
     Signo(
@@ -70,6 +79,7 @@ class SignosRepository {
       nome: 'Capricórnio',
       casa: '10',
       elemento: 'Terra',
+      raw: ['terra', 'capricornio', '10'],
       preco: 29.33,
     ),
     Signo(
@@ -77,6 +87,7 @@ class SignosRepository {
       nome: 'Aquário',
       casa: '11',
       elemento: 'Ar',
+      raw: ['ar', 'aquario', '11'],
       preco: 09.20,
     ),
     Signo(
@@ -84,6 +95,7 @@ class SignosRepository {
       nome: 'Peixes',
       casa: '12',
       elemento: 'Água',
+      raw: ['agua', 'peixes', '12'],
       preco: 20.20,
     )
   ];
